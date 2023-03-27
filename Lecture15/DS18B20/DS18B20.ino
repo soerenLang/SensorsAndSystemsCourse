@@ -1,6 +1,6 @@
 #include <OneWire.h> 
 
-int DS18S20_Pin = 4; //DS18S20 Signal pin on digital 2
+int DS18S20_Pin = 2; //DS18S20 Signal pin on digital 2
 char tmpstring[10];
 
 //Temperature chip i/o
