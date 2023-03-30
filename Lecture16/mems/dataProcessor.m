@@ -16,7 +16,7 @@ data = str2double(data(1:end-1));
 
 dcOffset = mean(data)
 data = data - dcOffset;
-data = data/max(data);
+data = data/max(abs(data));
 plot(data)
 
 F_s = length(data)/TestTime;
