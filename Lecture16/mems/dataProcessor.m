@@ -1,19 +1,22 @@
 clear
 clc
 
-arduinoObj = serialport("COM4",115200);
+arduinoObj = serialport("COM4",460800);
 
 configureTerminator(arduinoObj,"CR/LF");
 flush(arduinoObj);
 
-TestTime = 5;
+TestTime = 30;
 pause(TestTime);
 data = read(arduinoObj, arduinoObj.NumBytesAvailable,"string");
-%arduinoObj.UserData = struct("Data",[],"Count",1)
-
+arduinoObj.UserData = struct("Data",[],"Count",1)
+%%
 data = strsplit(data, "\r\n");
-data = str2double(data(1:end-1));
+data = data(1:end-1);
+data = str2double(data);
 
+writematrix(data, "rawData.csv");
+%%
 dcOffset = mean(data)
 data = data - dcOffset;
 data = data/max(abs(data));
