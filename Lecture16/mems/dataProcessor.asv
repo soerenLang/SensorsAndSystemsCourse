@@ -1,0 +1,16 @@
+clear
+clc
+
+arduinoObj = serialport("COM4",9600);
+
+configureTerminator(arduinoObj,"CR/LF");
+flush(arduinoObj);
+
+pause(1);
+data = read(arduinoObj, arduinoObj.NumBytesAvailable,"string");
+%arduinoObj.UserData = struct("Data",[],"Count",1)
+
+data = strsplit(data, "\r\n");
+data = str2double(data(1:end-1));
+
+mean = 
