@@ -1,27 +1,29 @@
 clear
+close all
 clc
 
-arduinoObj = serialport("COM4",460800);
+arduinoObj = serialport("COM4",115200);
 
 configureTerminator(arduinoObj,"CR/LF");
 flush(arduinoObj);
 
-TestTime = 3;
+TestTime = 30;
 pause(TestTime);
 data = read(arduinoObj, arduinoObj.NumBytesAvailable,"string");
 arduinoObj.UserData = struct("Data",[],"Count",1)
+
 %%
-data = strsplit(data, "\r\n");
+data = strsplit(data, "C\r\n");
 data = data(1:end-1);
 data = str2double(data);
 
 writematrix(data, "rawData.csv");
+
 %%
-dcOffset = mean(data)
-data = data - dcOffset;
-data = data/max(abs(data));
+%close Figure
+figure(1)
 plot(data)
-
-F_s = length(data)/TestTime;
-
-sound(data,F_s)
+title("Temperature at water kettle")
+xlabel("Sample []")
+ylabel("Temperature [C]")
+grid on
