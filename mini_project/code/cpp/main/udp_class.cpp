@@ -96,7 +96,7 @@ void udp_class::printWifiStatus()const
 
 void udp_class::transmit()
 {
-    IPAddress ip(192, 168, 0, 133);
+    IPAddress ip(***,***,***,***);
 
     std::array <char, 50> ReplyBuffer;
     

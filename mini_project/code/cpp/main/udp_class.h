@@ -23,8 +23,8 @@ class udp_class{
   void set_mag_out(uint16_t value);
 
   private:
-  char ssid[9]  = "Lang net";        // your network SSID (name)
-  char pass[11]  = {"mfool89030"};    // your network password (use for WPA, or use as key for WEP)  
+  char ssid[9]  = "********";        // your network SSID (name)
+  char pass[11]  = {"*******"};    // your network password (use for WPA, or use as key for WEP)  
   int status = WL_IDLE_STATUS;
 
   struct{
